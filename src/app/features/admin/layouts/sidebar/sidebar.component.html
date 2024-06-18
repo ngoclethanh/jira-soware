@@ -1,0 +1,23 @@
+<mat-nav-list [autofocus]="false">
+  <div class="mx-2.5">
+    <div class="flex">
+      <img width="45" height="45"
+        src="https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_256/v1593097745/angular-vietnam-transparent_iwfwxa.png"
+        alt="">
+      <div class="pl-2">
+        <div class="font-medium text-textDark text-15"> Angular Jira Clone </div>
+        <div class="text-textMedium text-13"> Software Project </div>
+      </div>
+    </div>
+    @for (menu of menus; track $index) {
+    <a [routerLink]="menu.link" routerLinkActive="current-route" class="sidenav-item flex items-center gap-2 p-2" matRipple >
+      <svg-image
+      class="sidenav-suffix-icon"
+      [src]="menu.svgIconPath!"
+      
+    />
+      <div class="sidenav-name">{{ menu.title }}</div>
+    </a>
+    }
+  </div>
+</mat-nav-list>

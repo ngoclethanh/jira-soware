@@ -1,0 +1,20 @@
+<p>product works!</p>
+<ul>
+    @for( item of products;track item){
+    <li>{{item.name}}</li>
+    }
+</ul>
+<style>
+   
+</style>
+<div style="display: flex" >
+    <button mat-stroked-button (click)="asc()">asc</button>
+     <p style="padding-left: 10px;padding-right: 10px;">{{cartService.counter}}</p>
+    <button mat-stroked-button (click)="desc()">desc</button>
+
+</div>
+
+<div>
+    <button mat-stroked-button (click)="addToCart({ name: 'Product 1', price: 100 });" class="bg-sky-500 hover:bg-sky-700 w-100 h-10">Add to Cart</button>
+    <button mat-stroked-button (click)="redirect();">Checkout</button>
+</div>

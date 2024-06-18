@@ -1,0 +1,12 @@
+.free-bottom-sheet {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .mat-bottom-sheet-container {
+    width: fit-content;
+    min-width: unset !important;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+  }
+}

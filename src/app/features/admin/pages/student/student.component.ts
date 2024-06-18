@@ -17,6 +17,7 @@ import { NotificationService } from '../../../../shared/services/notification.se
 export class StudentComponent implements OnInit {
   service = inject(NotificationService);
   ngOnInit(): void {
+    const ae='test 111111'
     // this.service.received().behavior.subscribe((data) => console.log("behavior:"+data));
     // this.service.received().subject.subscribe((data) => console.log("subject:"+data));
   }

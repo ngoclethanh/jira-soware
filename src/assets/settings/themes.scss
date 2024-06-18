@@ -1,0 +1,199 @@
+:root {
+}
+
+.light-theme {
+  --btn-theme: #6558f5;
+  --error-color: #f44336;
+  --main-color: #486f30;
+  --success-color: #27ae60;
+  --btn-main-bg-color: #1199ff;
+  --btn-main-light-bg-color: #486f30;
+  --link-color: #1199ff;
+  --as-link-color: var(--link-color);
+  --base-text-color: #0e0e0e;
+  --heading-text-color: #001423;
+  --like-mute-text-color: #738898;
+  --header-color: #272d32;
+  --base-btn-color: #272d32;
+  --btn-active-color: #fff;
+  --input-label-color: #738898;
+  --input-text-color: #001423;
+  --background-color: #fff;
+  --inlay-bg-color: rgba(0, 0, 0, 0.16);
+  --base-border-color: #e2e2e2;
+  --navbar-height: 62px;
+  --nav-text-color: #001423;
+  --btn-hover-bg: #f5f5f5;
+  --sidenav-icon-fill: #a5adc6;
+  --sidenav-icon-active-fill: #fff;
+  --sidenav-color: #000;
+  --sidenav-active: #5d8f3f;
+  --sidenav-active-text: #486f30;
+  --sidenav-bg-active: #f4f4f4;
+  --sidenav-transition: 0.2s;
+  --base-text-size: 16px;
+  --scrollbar-thumb-color: #a1a1a1;
+  --icon-fill: #000;
+  --options-background-color: #fff;
+  --ripple-color: rgb(0 0 0 / 12%);
+  --svg-disabled-fill-color: rgba(0, 0, 0, 0.15);
+  --table-inlay: rgba(235, 235, 235, 0.85);
+  --table-cell-height: 40px;
+  --table-cell-pdx: 12px;
+  --ripple-color-by-theme: rgb(0 0 0 / 12%);
+  --main-light-color: #c9d968;
+  --main-bold-color: #486f30;
+  --main-bold-hover-color: rgba(94, 194, 32, 0.2);
+  --main-bold-10-color: rgba(72, 111, 48, 0.1);
+  root .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: var(--main-bold-color) !important;
+    --mdc-tab-indicator-active-focus-indicator-color: var(--main-bold-color) !important;
+    --mdc-tab-header-active-focus-indicator-color: var(--main-bold-color) !important;
+    --mat-tab-header-active-label-text-color: var(--main-bold-color) !important;
+    --mat-tab-header-active-ripple-color: var(--main-bold-color) !important;
+    --mat-tab-header-inactive-ripple-color: var(--main-bold-color) !important;
+
+    --mat-tab-header-active-focus-label-text-color: var(--main-bold-color) !important;
+    --mat-tab-header-active-hover-label-text-color: var(--main-bold-color) !important;
+    --mat-tab-header-active-focus-indicator-color: var(--main-bold-color) !important;
+    --mat-tab-header-active-hover-indicator-color: var(--main-bold-color) !important;
+  }
+  .mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+  .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+    color: var(--main-bold-color);
+  }
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--main-bold-color);
+  }
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+    border-color: var(--main-bold-color);
+  }
+}
+
+.light-theme {
+  --btn-theme: #6558f5;
+  --error-color: #f44336;
+  --main-color: #486f30;
+  --success-color: #27ae60;
+  --btn-main-bg-color: #486f30;
+  --btn-main-light-bg-color: #486f30;
+  --link-color: #1199ff;
+  --as-link-color: var(--link-color);
+  --base-text-color: #0e0e0e;
+  --heading-text-color: #001423;
+  --like-mute-text-color: #738898;
+  --header-color: #272d32;
+  --base-btn-color: #272d32;
+  --btn-active-color: #fff;
+  --input-label-color: #738898;
+  --input-text-color: #001423;
+  --background-color: #f0f2f5;
+  --inlay-bg-color: rgba(0, 0, 0, 0.16);
+  --base-border-color: #e2e2e2;
+  --navbar-height: 62px;
+  --nav-text-color: #001423;
+  --btn-hover-bg: #f5f5f5;
+  --sidenav-icon-fill: #a5adc6;
+  --sidenav-icon-active-fill: #fff;
+  --sidenav-color: #000;
+  --sidenav-active: #757575;
+  --sidenav-bg-active: #f4f4f4;
+  --sidenav-transition: 0.2s;
+  --base-text-size: 16px;
+  --scrollbar-thumb-color: #a1a1a1;
+  --icon-fill: #000;
+  --options-background-color: #fff;
+  --ripple-color: rgb(0 0 0 / 12%);
+  --svg-disabled-fill-color: rgba(0, 0, 0, 0.15);
+  --table-inlay: rgba(235, 235, 235, 0.85);
+  --table-cell-height: 40px;
+  --table-cell-pdx: 12px;
+  --ripple-color-by-theme: rgb(0 0 0 / 12%);
+}
+
+.dark-theme {
+  --btn-theme: #6558f5;
+  --error-color: #f44336;
+  --main-color: #1199ff;
+  --success-color: #27ae60;
+  --btn-main-bg-color: #1199ff;
+  --btn-main-light-bg-color: #486f30;
+  --link-color: #1199ff;
+  --as-link-color: var(--link-color);
+  --base-text-color: #fff;
+  --heading-text-color: #001423;
+  --like-mute-text-color: #738898;
+  --header-color: #272d32;
+  --base-btn-color: #272d32;
+  --btn-active-color: #fff;
+  --input-label-color: #738898;
+  --input-text-color: #001423;
+  --background-color: #0f0f0f;
+  --inlay-bg-color: rgba(0, 0, 0, 0.16);
+  --base-border-color: #444444;
+  --navbar-height: 62px;
+  --nav-text-color: #001423;
+  --btn-hover-bg: #494949;
+  --sidenav-icon-fill: #a5adc6;
+  --sidenav-icon-active-fill: #fff;
+  --sidenav-color: #000;
+  --sidenav-active: #fff;
+  --sidenav-bg-active: #f4f4f4;
+  --sidenav-transition: 0.2s;
+  --base-text-size: 16px;
+  --scrollbar-thumb-color: #a1a1a1;
+  --icon-fill: #fff;
+  --options-background-color: #282828;
+  --ripple-color: rgb(255 255 255 / 12%);
+  --mdc-outlined-text-field-outline-color: #6e6e6e !important;
+  --mdc-outlined-text-field-hover-outline-color: #cbcbcb !important;
+  --mat-select-panel-background-color: var(--options-background-color) !important;
+  --svg-disabled-fill-color: #747474;
+  --table-inlay: #262626;
+  --table-cell-height: 40px;
+  --table-cell-pdx: 12px;
+  --ripple-color-by-theme: rgb(255 255 255 / 12%);
+}
+
+.date-picker {
+  background-color: var(--options-background-color);
+  border-radius: 15px;
+  .time-picker {
+    input {
+      color: var(--base-text-color);
+      background-color: var(--options-background-color);
+    }
+  }
+  .mat-calendar {
+    .mat-calendar-header .mat-calendar-controls .mat-mdc-button .mdc-button__label {
+      color: var(--base-text-color);
+      svg {
+        fill: var(--base-text-color);
+      }
+    }
+  }
+  .mat-calendar-content mat-month-view .mat-calendar-table {
+    .mat-calendar-table-header .mat-calendar-table-header-divider::after {
+      background-color: var(--base-border-color);
+    }
+    .mat-calendar-table-header tr th,
+    .mat-calendar-body tr td,
+    .mat-calendar-body tr td .mat-calendar-body-cell .mat-calendar-body-cell-content {
+      color: var(--base-text-color);
+    }
+    .mat-calendar-body tr td .mat-calendar-body-cell .mat-calendar-body-cell-content {
+      &.mat-calendar-body-selected {
+        color: #fff;
+      }
+      &.mat-calendar-body-today {
+        border-color: var(--base-border-color);
+      }
+    }
+  }
+}
+
+.datepicker-plugin-container .mdc-dialog__container .mat-mdc-dialog-surface {
+  background-color: transparent !important;
+}

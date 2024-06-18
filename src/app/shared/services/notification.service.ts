@@ -8,16 +8,19 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class NotificationService {
   subject$ = new Subject();
   behavior$= new BehaviorSubject<string>("");
+  user$ = new BehaviorSubject<any>([]);
+
   constructor() {}
 
   send(value: any) {
-    this.subject$.next(value);
-    this.behavior$.next(value);
+    //this.subject$.next(value);
+  return  this.behavior$.next(value);
   }
   received(){
-    return{
-       behavior: this.behavior$.asObservable(),
-       subject:this.subject$.asObservable()
-    }
+    return this.behavior$.asObservable();
+    // return{
+    //    behavior: this.behavior$.asObservable(),
+    //    subject:this.subject$.asObservable()
+    // }
   }
 }

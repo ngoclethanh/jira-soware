@@ -1,0 +1,39 @@
+<div class="flex  mt-6 gap-4">
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="text" />
+    </mat-form-field>
+    <div class="flex ml-8">
+        @for (item of avtList; track $index) {
+        <div class="lift-avatar ">
+            <img src="{{item.avatarUrl}}" class="shadow-outline-white avatar-container avatar"  >
+        </div>
+
+        }
+    </div>
+    <button mat-stroked-button>Only My Issues</button>
+    <button mat-stroked-button>Ignore Resolve</button>
+</div>
+<div class="flex container mt-7"
+     >
+    <div class="board-dnd-list ml-2"
+         *ngFor="let status of issueStatuses"
+        >
+        <div class="status-list">
+            <div class="px-3 pb-4 pt-3 uppercase text-textMedium text-13 truncate">
+                {{ IssueStatusDisplay[status] }}
+                <span class="lowercase text-13">{{ getFilterIssues(status,issues)?.length }}</span>
+            </div>
+            <div class="h-full pl-2"
+                 cdkDropList
+                 [id]="status"
+                 >
+                <app-issue-card *ngFor="let issue of getFilterIssues(status,issues)"
+                            [issue]="issue"
+                            cdkDrag
+                            >
+                </app-issue-card>
+            </div>
+        </div>
+    </div>
+</div>

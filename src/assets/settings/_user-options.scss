@@ -1,0 +1,106 @@
+@mixin IconSide {
+  width: 24px;
+  height: 24px;
+}
+
+.default-view {
+  padding: 12px 0;
+}
+
+.user-options {
+  min-width: 250px;
+  max-width: 450px;
+  background-color: var(--options-background-color);
+  border-radius: 12px;
+  margin-top: 8px;
+  box-shadow: 0 3px 5px -1px rgba(121, 121, 121, 0.2), 0 6px 10px rgba(152, 152, 152, 0.14), 0 1px 18px rgba(161, 161, 161, 0.12);
+  max-height: calc(100vh - var(--mat-toolbar-standard-height) * 2);
+  overflow: hidden auto;
+  .user-info {
+    padding: 0 12px 12px;
+    .user-avatar {
+      width: 48px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+    .udt {
+      font-weight: 500;
+      cursor: default;
+    }
+  }
+  .actions {
+    padding-top: 12px;
+  }
+}
+
+.opts-icon-btn {
+  width: 40px !important;
+  max-width: 40px !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  max-height: 40px !important;
+  min-height: 40px !important;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  .mdc-button__label {
+    @include IconSide;
+  }
+  .action-icon {
+    @include IconSide;
+  }
+}
+
+.opts-action-btn {
+  width: 100%;
+  border-radius: 0 !important;
+  justify-content: start;
+  &:hover {
+    background-color: var(--btn-hover-bg);
+  }
+  .action-icon {
+    @include IconSide;
+    margin-left: 3px;
+    &.suffix-icon {
+      margin-left: auto;
+    }
+  }
+  .mdc-button__label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.bottom-divide {
+  border-bottom: 1px solid var(--base-border-color);
+}
+
+.opts-top-nav {
+  padding: 2px;
+}
+
+.as-more-options {
+  .more-opt-list {
+    padding: 8px 0;
+  }
+}
+
+.notification-box {
+  position: relative;
+  padding: 16px;
+  transition: 0.15s;
+  &:hover {
+    background: var(--btn-hover-bg);
+  }
+}
+
+.opt-header {
+  font-size: 1rem;
+}

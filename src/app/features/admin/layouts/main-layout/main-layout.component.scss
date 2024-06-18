@@ -1,0 +1,35 @@
+:host{
+
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: #F6F7F6;
+    overflow: auto;
+    --mdc-list-list-item-label-text-color: #fff;
+    --mdc-list-list-item-hover-label-text-color: #fff;
+    --mdc-list-list-item-focus-label-text-color: #fff;
+}
+.mat-drawer-container{
+    overflow: visible;
+
+}
+
+.sidenav-container{
+    position: sticky;
+    z-index: 1;
+   
+}
+  //height: calc(100% - var(--mat-toolbar-standard-height))
+ 
+  
+
+.sidenav
+{
+    width: 270px;
+    background: #333F34;
+    color: #fff;
+}
+
+
+
+

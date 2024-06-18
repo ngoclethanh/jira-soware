@@ -1,3 +1,30 @@
 <p>dashboard works!</p>
-<input type="text" (keyup.enter)="onInput()" [(ngModel)]="text" name="text">
-<app-student></app-student>
+<!-- <input type="text" (keyup.enter)="onInput()" [(ngModel)]="text" name="text">
+<app-student></app-student> -->
+
+<app-toggle >
+    <header header>
+        <div>
+           text content 
+        </div>
+    </header>
+    <div div></div>
+    <span class="text-lg" style="color: brown;">Question 1</span>
+  </app-toggle>
+  
+  <app-toggle>
+    <footer footer>
+        <span>Question 2</span>
+
+    </footer>
+  </app-toggle>
+
+
+<!-- <ng-container [ngComponentOutlet]="studentCpn"></ng-container> -->
+<!-- có thể dùng when giống if -->
+@defer (on interaction(trigger)) {
+    <app-student></app-student>
+}
+@placeholder(minimum 500ms) {
+    <button type="button" #trigger > click </button>
+}
