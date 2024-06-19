@@ -6,11 +6,12 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { BreadcrumbComponent } from '../breadcrumbs/breadcrumb.component';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { HeaderComponent } from '../header/header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProjectService } from '../../../../shared/services/project.service';
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [RouterModule,CommonModule,MatSidenavModule,SidebarComponent,MatSidenav,BreadcrumbComponent,HeaderComponent],
+  imports: [RouterModule,CommonModule,MatSidenavModule,SidebarComponent,MatSidenav,BreadcrumbComponent,HeaderComponent,MatToolbarModule],
   templateUrl:"./main-layout.component.html",
   styleUrl:"./main-layout.component.scss",
   changeDetection: ChangeDetectionStrategy.Default

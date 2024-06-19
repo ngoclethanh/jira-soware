@@ -25,18 +25,16 @@ export class IssueCardComponent implements OnInit,OnChanges {
   @Input() issue: JIssue | undefined;
   assignees: JUser[] | undefined;
   issueTypeIcon: string = '';
-  //priorityIcon: IssuePriorityIcon;
+  priorityIcon: string ='';
   ngOnInit(): void {
     this.service.user$.asObservable().subscribe((user) => {
       this.assignees = this.issue?.userIds.map((userId) =>
         user.users?.find((x: any) => x.id === userId)
       );
-      console.log(this.assignees);
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.issueTypeIcon = IssueUtil.getIssueTypeIcon(this.issue?.type!);
-    console.log(this.issueTypeIcon);
-    
+    this.priorityIcon = IssueUtil.getIssuePriorityIcon(this.issue?.priority!)
   }
 }

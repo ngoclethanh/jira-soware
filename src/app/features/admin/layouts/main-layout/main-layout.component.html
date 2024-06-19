@@ -3,8 +3,10 @@
         <app-sidebar></app-sidebar>
     </mat-sidenav>
 </mat-sidenav-container>
-<div class="w-full">
-    <app-breadcrumb></app-breadcrumb>
+<div class="w-full overflow-y-auto">
+    <mat-toolbar >
+        <app-breadcrumb></app-breadcrumb>
+    </mat-toolbar>
     <app-header></app-header>
     <div class="p-4">
         <router-outlet></router-outlet>

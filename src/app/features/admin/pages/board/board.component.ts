@@ -5,13 +5,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProjectService } from '../../../../shared/services/project.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { MatButtonModule } from '@angular/material/button';
-import { IssueStatus, IssueStatusDisplay, JIssue } from '../../../../shared/models/model';
+import {
+  IssueStatus,
+  IssueStatusDisplay,
+  JIssue,
+  JUser,
+} from '../../../../shared/models/model';
 import { CommonModule } from '@angular/common';
 import { IssueCardComponent } from '../issues/issue-card/issue-card.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule,MatButtonModule,CommonModule,IssueCardComponent],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    CommonModule,
+    IssueCardComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,
@@ -21,26 +36,63 @@ export class BoardComponent implements OnInit {
     IssueStatus.BACKLOG,
     IssueStatus.SELECTED,
     IssueStatus.IN_PROGRESS,
-    IssueStatus.DONE
+    IssueStatus.DONE,
   ];
+
+  searchControl: FormControl = new FormControl('');
   issues: JIssue[] = [];
   // get issuesCount(): number {
   //   return this.issues?.length;
   // }
 
   IssueStatusDisplay = IssueStatusDisplay;
-  constructor(private projectService:ProjectService,private service:NotificationService){
+  constructor(
+    private projectService: ProjectService,
+    private service: NotificationService
+  ) {}
+   cloneArr: JIssue[] = [];
 
-  }
-  avtList:any= [];
+  avtList: any = [];
   ngOnInit(): void {
-    this.service.user$.asObservable().subscribe((data:any)=>{
-this.avtList = data.users;
-this.issues = data.issues;
+   this.clearAll()
+    this.searchControl.valueChanges
+      .pipe(debounceTime(100), distinctUntilChanged())
+      .subscribe((term: string) => {
+        this.issues = this.cloneArr?.filter((item: any) =>
+          item.title.toLocaleLowerCase()?.includes(term.toLocaleLowerCase())
+        );
 
-    })
+        //this.filterService.updateSearchTerm(term);
+      });
+
+    // this.filterQuery.userIds$.pipe(untilDestroyed(this)).subscribe((userIds) => {
+    //   this.userIds = userIds;
+    // });
   }
-  getFilterIssues(status:string,issueList:any[]){
- return issueList?.filter((item)=> item.status == status)
+   arr:any[] =[];
+  userChanged(user: JUser) {
+    const hasUser = this.cloneArr.filter((x)=>x.userIds.includes(user.id));
+    this.arr.push(...hasUser);
+    this.issues =[...new Set(this.arr)];
+   // this.filterService.toggleUserId(user.id);
+  }
+  getFilterIssues(status: string, issueList: any[]) {
+  
+    return issueList?.filter((item) => item.status == status);
+  }
+  clearAll(){
+    this.searchControl.setValue('');
+    this.service.user$.asObservable().subscribe((data: any) => {
+      this.avtList = data.users;
+      this.issues = data.issues;
+      this.cloneArr = data.issues
+        ? JSON.parse(JSON.stringify(data.issues))
+        : data.issues;
+    });
+
+  }
+  myIssues(){
+    const local= JSON.parse(localStorage.getItem('user')!)
+    this.issues =this.issues.filter((item)=> item.userIds.includes(local.id))
   }
 }

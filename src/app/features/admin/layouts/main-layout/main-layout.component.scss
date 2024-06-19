@@ -8,10 +8,18 @@
     --mdc-list-list-item-label-text-color: #fff;
     --mdc-list-list-item-hover-label-text-color: #fff;
     --mdc-list-list-item-focus-label-text-color: #fff;
+    --mat-toolbar-title-text-size:14px;
 }
 .mat-drawer-container{
     overflow: visible;
 
+}
+
+.mat-toolbar{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    --mat-toolbar-container-background-color: rgba(246, 247, 246, 1);
 }
 
 .sidenav-container{
