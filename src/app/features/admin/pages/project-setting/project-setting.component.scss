@@ -1,0 +1,107 @@
+// div {
+
+//     width: 100px;
+
+//     height: 100px;
+
+//     background: red;
+//     background-color: aqua;
+//     //xđ thuộc tính CSS mà hiệu ứng transition sẽ được áp dụng. vd all,cho chiều rộng (width) và chiều cao (height).(required)
+//     transition-property: all;
+//     //Xác định thời gian thực hiện quá trình chuyển đổi, được tính bằng giây. Giá trị càng lớn, thời gian chuyển đổi càng lâu và ngược lại.
+//     transition-duration: 1s;
+//     //Thiết lập khoảng thời gian chờ đợi trước khi hiệu ứng transition thực sự diễn ra.
+//     transition-delay: 0.5s;
+//     //
+//     transition-timing-function: ease-in-out;
+//     //Xác định một dịch chuyển 2D theo trục Y
+//     //  transform: translateY(-5px);
+//     //Định nghĩa một phép quay 2D với góc được xác định bởi tham số.
+//     transform: rotate(45deg);
+
+
+//     //transition-delay: 2s;
+
+// }
+
+// //Transitions CSS cho phép tạo ra hiệu ứng chuyển đổi và kiểm soát tốc độ chuyển đổi của các phần tử HTML khi thuộc tính CSS của chúng thay đổi. 
+// div:hover {
+//     //width: 300px;
+//     cursor: pointer;
+
+// }
+
+/* Code animation */
+@keyframes example {
+    from {
+        background-color: pink;
+    }
+
+    to {
+        background-color: purple;
+        transform: rotate(360deg);
+    }
+}
+
+/* Code animation */
+// @keyframes example {
+//     0% {
+//         background-color: red;
+//         left: 0px;
+//         top: 0px;
+//     }
+
+//     25% {
+//         background-color: yellow;
+//         left: 200px;
+//         top: 0px;
+//     }
+
+//     50% {
+//         background-color: blue;
+//         left: 200px;
+//         top: 200px;
+//     }
+
+//     75% {
+//         background-color: green;
+//         left: 0px;
+//         top: 200px;
+//     }
+
+//     100% {
+//         background-color: red;
+//         left: 0px;
+//         top: 0px;
+//     }
+// }
+
+/* Áp dụng animation vào phần tử */
+// div {
+//     width: 100px;
+//     height: 100px;
+//     position: relative;
+//     background-color: red;
+//     animation-name: example;
+//     animation-duration: 4s;
+// }
+
+/* Áp dụng animation vào phần tử */
+.test-animation {
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    // animation-name: example;
+    position: relative;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    &:hover {
+        //
+        transition-duration: 2s;
+        transition-property: all;
+        transition-timing-function: linear;
+        transform: rotate(360deg);
+    }
+}

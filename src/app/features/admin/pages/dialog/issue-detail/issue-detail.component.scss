@@ -1,0 +1,28 @@
+.btn-type{
+    border: none;
+    border-radius: 0;
+}
+ul{
+    transition: all 0.3s ease-in-out;
+        display: none;
+        position: absolute;
+        z-index:10;
+
+    width: 100%;
+    button{
+        display: flex;
+        justify-content: left;
+        border: none;
+    }
+    background-color: #FFFFFF;
+    transition-property: all;
+    transition-duration: 1s;
+    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown:hover ul{
+    display: block;
+  }

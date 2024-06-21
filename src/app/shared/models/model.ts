@@ -1,4 +1,7 @@
-export interface BreadCrumb {
+import { IssuePriority, IssueStatus, IssueType, ProjectCategory } from "../common/enums";
+import { IssueUtil } from "../utils/issues";
+
+  export interface BreadCrumb {
     label: string;
     url: string;
   }
@@ -14,49 +17,9 @@ export interface BreadCrumb {
     //users: JUser[];
   }
   
-  // eslint-disable-next-line no-shadow
-  export enum ProjectCategory {
-    SOFTWARE = 'Software',
-    MARKETING = 'Marketing',
-    BUSINESS = 'Business'
-  }
-
-  export enum IssueType {
-    STORY = 'Story',
-    TASK = 'Task',
-    BUG = 'Bug'
-  }
   
-  export enum IssueStatus {
-    BACKLOG = 'Backlog',
-    SELECTED = 'Selected',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    IN_PROGRESS = 'InProgress',
-    DONE = 'Done'
-  }
   
-  export const IssueStatusDisplay = {
-    [IssueStatus.BACKLOG]: 'Backlog',
-    [IssueStatus.SELECTED]: 'Selected for Development',
-    [IssueStatus.IN_PROGRESS]: 'In progress',
-    [IssueStatus.DONE]: 'Done'
-  };
   
-  export enum IssuePriority {
-    LOWEST = 'Lowest',
-    LOW = 'Low',
-    MEDIUM = 'Medium',
-    HIGH = 'High',
-    HIGHEST = 'Highest'
-  }
-  
-  export const IssuePriorityColors = {
-    [IssuePriority.HIGHEST]: '#CD1317',
-    [IssuePriority.HIGH]: '#E9494A',
-    [IssuePriority.MEDIUM]: '#E97F33',
-    [IssuePriority.LOW]: '#2D8738',
-    [IssuePriority.LOWEST]: '#57A55A'
-  };
   export interface JIssue {
     id: string;
     title: string;
@@ -83,5 +46,14 @@ export interface BreadCrumb {
     createdAt: string;
     updatedAt: string;
     issueIds: string[];
+  }
+  export class IssueTypeWithIcon {
+    value: string;
+    icon: string;
+  
+    constructor(issueType: IssueType) {
+      this.value = issueType;
+      this.icon = IssueUtil.getIssueTypeIcon(issueType);
+    }
   }
   /* eslint-enable no-shadow */

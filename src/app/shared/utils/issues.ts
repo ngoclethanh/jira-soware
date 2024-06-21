@@ -1,4 +1,4 @@
-import { IssuePriority, IssueType } from '../models/model';
+import { IssuePriority, IssueType } from "../common/enums";
 
 export class IssueUtil {
   static getIssueTypeIcon(issueType: string): string {

@@ -6,13 +6,13 @@
     <div class="flex ml-8">
         @for (item of avtList; track $index) {
         <div class="lift-avatar ">
-            <img (click)="userChanged(item)" src="{{item.avatarUrl}}" class="shadow-outline-white avatar-container avatar"  >
+            <img (click)="userChanged(item)" src="{{item.avatarUrl}}" class="shadow-outline-white avatar-container avatar hover:bg-blue-800 focus:ring-4"  >
         </div>
 
         }
     </div>
     <button mat-stroked-button (click)="myIssues()">Only My Issues</button>
-    <button mat-stroked-button>Ignore Resolve</button>
+    <button mat-stroked-button (click)="ignoreResolve()">Ignore Resolve</button>
     <button mat-stroked-button (click)="clearAll()">Clear All</button>
 </div>
 <div class="flex container mt-7"

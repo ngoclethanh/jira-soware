@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,8 +6,6 @@ import { ProjectService } from '../../../../shared/services/project.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { MatButtonModule } from '@angular/material/button';
 import {
-  IssueStatus,
-  IssueStatusDisplay,
   JIssue,
   JUser,
 } from '../../../../shared/models/model';
@@ -15,6 +13,10 @@ import { CommonModule } from '@angular/common';
 import { IssueCardComponent } from '../issues/issue-card/issue-card.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { IssueDetailComponent } from '../dialog/issue-detail/issue-detail.component';
+import { IssueStatus } from '../../../../shared/common/enums';
+import { IssueStatusDisplay } from '../../../../shared/common/const';
 @Component({
   selector: 'app-board',
   standalone: true,
@@ -38,7 +40,6 @@ export class BoardComponent implements OnInit {
     IssueStatus.IN_PROGRESS,
     IssueStatus.DONE,
   ];
-
   searchControl: FormControl = new FormControl('');
   issues: JIssue[] = [];
   // get issuesCount(): number {
@@ -95,4 +96,9 @@ export class BoardComponent implements OnInit {
     const local= JSON.parse(localStorage.getItem('user')!)
     this.issues =this.issues.filter((item)=> item.userIds.includes(local.id))
   }
+  ignoreResolve(){
+    this.issues =this.issues.filter((item)=> item.status !== IssueStatus.DONE)
+  }
+  
+ 
 }

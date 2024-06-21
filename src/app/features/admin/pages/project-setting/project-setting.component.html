@@ -1,1 +1,36 @@
 <p>project-setting works!</p>
+<div></div>
+<div class="test-animation">
+    
+</div>
+
+
+<div class="box">
+                <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+                <mat-card>
+                  <mat-card-content>
+                    <h2>Number of People</h2>
+                    <p>Room: {{ Roomvalue }}, Adult: {{ Adult }}, Children: {{ Children }}</p>
+                    <div class="slider-container">
+                      <div class="slider-item">
+                        <label>Room</label>
+                        <mat-slider class="slider" name="Roomvalue"   [max]="8" [min]="0" [step]="1">
+                          <input matSliderThumb  name="Roomvalue" [value]="Roomvalue"  [(ngModel)]="Roomvalue">
+                        </mat-slider>
+                      </div>
+                      <div class="slider-item">
+                        <label>Adult</label>
+                        <mat-slider class="slider" name="Adult"  [max]="10" [min]="0" [step]="1">
+                          <input matSliderThumb name="Adult"  [(ngModel)]="Adult">
+                        </mat-slider>
+                      </div>
+                      <div class="slider-item">
+                        <label>Children</label>
+                        <mat-slider class="slider" name="Children"  [max]="10" [min]="0" [step]="1">
+                          <input matSliderThumb name="Children" [(ngModel)]="Children">
+                        </mat-slider>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 // @config "./tailwindcss-config.js";
 @import 'assets/settings/custom-mat-form-field';
+@import '../node_modules/font-awesome/css/font-awesome.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,25 +22,38 @@ body {
     cursor: pointer;
     border-radius: 9999px;
     transition-property: transform;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     transition-duration: .1s;
 }
-.avatar-container{
+
+.avatar-container {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.avatar{
+
+.avatar {
     width: 36px;
     height: 36px;
     border-radius: 100%;
+
+    &:hover {
+        transform: translateY(-5px);
+        transition: ease-out 0.2s;
+        -webkit-transition: ease-out 0.2s;
+    }
 }
+
+
 .board-dnd-list {
     width: calc(100% / 4 - 8px);
     min-height: 400px;
-    min-width: 200px;  
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     background-color: rgb(244 245 247)
+}
 
-  }
+.shadow-outline-white {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 0 2px #fff;
+}
