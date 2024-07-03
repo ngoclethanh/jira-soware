@@ -1,28 +1,59 @@
-.btn-type{
+.btn-type {
     border: none;
     border-radius: 0;
 }
-ul{
-    transition: all 0.3s ease-in-out;
-        display: none;
-        position: absolute;
-        z-index:10;
 
-    width: 100%;
-    button{
-        display: flex;
-        justify-content: left;
-        border: none;
-    }
+ul {
+    transition: all 0.3s ease-in-out;
+    display: none;
+    position: absolute;
+    z-index: 10;
     background-color: #FFFFFF;
     transition-property: all;
     transition-duration: 1s;
-    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+    box-shadow: 0 3px 6px -4px #0000001f,
+    0 6px 16px #00000014,
+    0 9px 28px 8px #0000000d;
 }
-.dropdown{
+
+.dropdown {
     position: relative;
     display: inline-block;
+    width: 100%;
 }
-.dropdown:hover ul{
-    display: block;
-  }
+
+
+.textarea-inline-control {
+    border-color: transparent !important;
+    border: none !important;
+    overflow: auto;
+    overflow-y: hidden;
+    font-size: 1.5rem;
+    font-weight: 500;
+    height: 42px;
+    max-height: 100% !important;
+
+    &:focus {
+        border: 1px solid #4c9aff;
+        box-shadow: 0 0 0 1px #4c9aff;
+        outline: none;
+    }
+}
+
+.avatar{
+    width: 20px;
+    height: 20px;
+}
+.show {
+    ul {
+        display: block;
+        padding: 5px 0 5px 0;
+        li {
+            padding: 10px 5px 10px 5px;
+            &:hover{
+                background-color: #ddd;
+            }
+        }
+
+    }
+}

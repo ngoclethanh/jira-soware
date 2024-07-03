@@ -137,6 +137,20 @@
 .mat-mdc-option .mdc-list-item__primary-text {
   font-size: 14px !important;
 }
+.field-as-text.mat-form-field-disabled {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: transparent !important;
+  }
+  .mat-mdc-form-field-icon-suffix,
+  .mat-mdc-select-arrow-wrapper,
+  .mat-mdc-form-field-hint {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
+}
 
 mat-label {
   font-size: 14px;

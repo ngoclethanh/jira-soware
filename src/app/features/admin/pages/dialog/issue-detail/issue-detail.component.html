@@ -2,26 +2,25 @@
   <div class="flex justify-between items-start">
     <div class="flex" style="flex-direction: column">
       <div class="dropdown">
-        <button mat-stroked-button (click)="isOpenType=!isOpenType" class="btn-type">
+        <button mat-stroked-button (click)="isOpenType=!isOpenType;showType()" class="btn-type">
           <div class="flex gap-2" style="cursor: pointer;">
             <img src="{{getType.icon}}" width="16" height="16" alt="">
             <div>{{getType.value?.toUpperCase()}}-{{data.id}}</div>
           </div>
         </button>
-        <ul>
-          @for (item of issueType; track $index) {
-          @if (item.value !== getType.value) {
-          <li>
-            <button mat-stroked-button class="!w-full" (click)="onChangeType(item.value)">
-              <div class="flex gap-2" style="cursor: pointer; width: auto;">
-                <img src="{{item.icon}}" width="16" height="16" alt="">
-                <div>{{item.value.toUpperCase()}}</div>
-              </div>
-            </button>
-          </li>
-          }
-          }
-        </ul>
+        <div id="dropdown-type">
+          <ul class="w-32">
+            @for (item of issueType; track $index) {
+            @if (item.value !== getType.value) {
+            <li (click)="onChangeType(item.value)" class="flex gap-4 items-center">
+                  <img src="{{item.icon}}" width="16" height="16" alt="">
+                  <div>{{item.value.toUpperCase()}}</div>
+            </li>
+            }
+            }
+          </ul>
+        </div>
+        
       </div>
 
     </div>
@@ -33,25 +32,68 @@
     </div>
   </div>
 
-  <div class="flex mt-5 ">
-    <div class="w-2/3">
+  <div class="grid grid-cols-3 mt-5 gap-4">
+    <div class="col-span-2">
       <form [formGroup]="form" (submit)="updateDescription()">
-        <mat-form-field appearance="outline" class="w-full">
-          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="title"
-            (blur)="updateTitle()" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
-        </mat-form-field>
-       
+        <textarea class="w-full textarea-inline-control" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+          formControlName="title" (blur)="updateTitle()" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+
         @if(clickAble === true){
-          <angular-editor #element [placeholder]="'Enter text here...'" formControlName="description" [autofocus]="true"
+        <angular-editor #element [placeholder]="'Enter text here...'" formControlName="description" [autofocus]="true"
           [config]="editorConfig"></angular-editor>
+        <div class="mt-5 flex gap-4"><button type="submit" mat-flat-button color="primary">Save</button><button
+            mat-button type="button" color="primary" (click)="clickAble = false">Cancel</button></div>
         }@else {
-          <div [innerHTML]="data.description" (click)="clickAble = !clickAble"></div>
+        <div [innerHTML]="data.description" (click)="clickAble = !clickAble"></div>
         }
-        <div class="mt-5 flex gap-4"><button type="submit" mat-flat-button color="primary">Save</button><button mat-button color="primary">Cancel</button></div>
+
       </form>
     </div>
     <div>
+      <div>
+        <div class="uppercase text-sm font-bold">status</div>
+        <div class="dropdown">
+          <button mat-stroked-button (click)="myFunction()">
+            <div class="flex gap-2" style="cursor: pointer;">
+              <div>{{ issueStatusDisplay[data.status] }}</div>
+            </div>
+          </button>
+          <div class="dropdown-status" id="dropdown-status">
+            <ul>
+              @for (item of issueStatuses; track $index) {
+                @if(item.value !== data.status){
+                  <li class="text-sm" style="cursor: pointer;">
+                    {{item.label.toUpperCase()}}
+                  </li>
+                }
+              }
+            </ul>
+          </div>
 
+        </div>
+      </div>
+      <div class="mt-5">
+        <div class="uppercase text-sm font-bold">reporter</div>
+        <div class="dropdown">
+          <button mat-stroked-button (click)="showListReporter()" (blur)="blurDrop()">
+            <div class="flex gap-2 items-center" style="cursor: pointer;">
+              <img src="{{reporter.avatarUrl}}"  class="shadow-outline-white avatar-container avatar"> <div>{{ reporter.name }}</div>
+            </div>
+          </button>
+          <div class="dropdown-reporter" id="dropdown-reporter">
+            <ul>
+              @for (item of reporterList; track $index) {
+                @if(item.id !== data.reporterId){
+                  <li class="text-sm flex gap-4" style="cursor: pointer;">
+                    <img src="{{item.avatarUrl}}"  class="shadow-outline-white avatar-container avatar">  {{item.name}}
+                  </li>
+                }
+              }
+            </ul>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </mat-dialog-content>
