@@ -69,6 +69,7 @@ export class IssueDetailComponent implements OnInit,AfterViewInit {
     title:[''],
     description:['']
   })
+  testRebase='test rebase'
   reporter:any={};
   reporterList:any=[]
   status:string =''
