@@ -1,28 +1,8 @@
 <mat-dialog-content>
   <div class="flex justify-between items-start">
     <div class="flex" style="flex-direction: column">
-      <div class="dropdown">
-        <button mat-stroked-button (click)="isOpenType=!isOpenType;showType()" class="btn-type">
-          <div class="flex gap-2" style="cursor: pointer;">
-            <img src="{{getType.icon}}" width="16" height="16" alt="">
-            <div>{{getType.value?.toUpperCase()}}-{{data.id}}</div>
-          </div>
-        </button>
-        <div id="dropdown-type">
-          <ul class="w-32">
-            @for (item of issueType; track $index) {
-            @if (item.value !== getType.value) {
-            <li (click)="onChangeType(item.value)" class="flex gap-4 items-center">
-                  <img src="{{item.icon}}" width="16" height="16" alt="">
-                  <div>{{item.value.toUpperCase()}}</div>
-            </li>
-            }
-            }
-          </ul>
-        </div>
-        
-      </div>
 
+      <app-issue-type [data]="data"></app-issue-type>
     </div>
 
     <div class="flex gap-4">
@@ -50,50 +30,11 @@
       </form>
     </div>
     <div>
-      <div>
-        <div class="uppercase text-sm font-bold">status</div>
-        <div class="dropdown">
-          <button mat-stroked-button (click)="myFunction()">
-            <div class="flex gap-2" style="cursor: pointer;">
-              <div>{{ issueStatusDisplay[data.status] }}</div>
-            </div>
-          </button>
-          <div class="dropdown-status" id="dropdown-status">
-            <ul>
-              @for (item of issueStatuses; track $index) {
-                @if(item.value !== data.status){
-                  <li class="text-sm" style="cursor: pointer;">
-                    {{item.label.toUpperCase()}}
-                  </li>
-                }
-              }
-            </ul>
-          </div>
-
-        </div>
-      </div>
-      <div class="mt-5">
-        <div class="uppercase text-sm font-bold">reporter</div>
-        <div class="dropdown">
-          <button mat-stroked-button (click)="showListReporter()" (blur)="blurDrop()">
-            <div class="flex gap-2 items-center" style="cursor: pointer;">
-              <img src="{{reporter.avatarUrl}}"  class="shadow-outline-white avatar-container avatar"> <div>{{ reporter.name }}</div>
-            </div>
-          </button>
-          <div class="dropdown-reporter" id="dropdown-reporter">
-            <ul>
-              @for (item of reporterList; track $index) {
-                @if(item.id !== data.reporterId){
-                  <li class="text-sm flex gap-4" style="cursor: pointer;">
-                    <img src="{{item.avatarUrl}}"  class="shadow-outline-white avatar-container avatar">  {{item.name}}
-                  </li>
-                }
-              }
-            </ul>
-          </div>
-
-        </div>
-      </div>
+     <app-issue-status [data]="data"  [formData]="form"></app-issue-status>
+      <app-issue-reporter [data]="data" [formData]="form"></app-issue-reporter>
+      <app-issue-assign [data]="data" [formData]="form"></app-issue-assign>
+      <app-issue-priority [priority]="this.data.priority" [formData]="form"
+        (onFormGroupChange)="onChange($event)"></app-issue-priority>
     </div>
   </div>
 </mat-dialog-content>

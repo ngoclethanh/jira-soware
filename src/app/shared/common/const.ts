@@ -1,17 +1,38 @@
-import {  IssueTypeWithIcon } from '../models/model';
+import { IssueTypeWithIcon } from '../models/model';
+import { IssueUtil } from '../utils/issues';
 import { IssuePriority, IssueStatus, IssueType } from './enums';
 
 export class ProjectConst {
   /* eslint-disable @typescript-eslint/naming-convention */
   static readonly IssueId = 'issueId';
   static readonly Projects = 'Projects';
-  // static PrioritiesWithIcon: IssuePriorityIcon[] = [
-  //   IssueUtil.getIssuePriorityIcon(IssuePriority.LOWEST),
-  //   IssueUtil.getIssuePriorityIcon(IssuePriority.LOW),
-  //   IssueUtil.getIssuePriorityIcon(IssuePriority.MEDIUM),
-  //   IssueUtil.getIssuePriorityIcon(IssuePriority.HIGH),
-  //   IssueUtil.getIssuePriorityIcon(IssuePriority.HIGHEST)
-  // ];
+  static PrioritiesWithIcon = [
+    {
+      id: 1,
+      name: 'Lowest',
+      avatarUrl: IssueUtil.getIssuePriorityIcon(IssuePriority.LOWEST),
+    },
+    {
+      id: 2,
+      name: 'Low',
+      avatarUrl: IssueUtil.getIssuePriorityIcon(IssuePriority.LOW),
+    },
+    {
+      id: 3,
+      name: 'Medium',
+      avatarUrl: IssueUtil.getIssuePriorityIcon(IssuePriority.MEDIUM),
+    },
+    {
+      id: 4,
+      name: 'High',
+      avatarUrl: IssueUtil.getIssuePriorityIcon(IssuePriority.HIGH),
+    },
+    {
+      id: 5,
+      name: 'Highest',
+      avatarUrl: IssueUtil.getIssuePriorityIcon(IssuePriority.HIGHEST),
+    },
+  ];
 
   static IssueTypesWithIcon: IssueTypeWithIcon[] = [
     new IssueTypeWithIcon(IssueType.BUG),

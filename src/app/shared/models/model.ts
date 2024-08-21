@@ -1,3 +1,4 @@
+import { EventEmitter, TemplateRef } from "@angular/core";
 import { IssuePriority, IssueStatus, IssueType, ProjectCategory } from "../common/enums";
 import { IssueUtil } from "../utils/issues";
 
@@ -64,3 +65,9 @@ import { IssueUtil } from "../utils/issues";
       public subscriber: string,
     ) {}
   }
+
+  export interface DropdownPanel {
+    templateRef: TemplateRef<any>;
+    readonly closed: EventEmitter<void>;
+  }
+  

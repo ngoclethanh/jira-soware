@@ -1,0 +1,36 @@
+<!-- <ng-template>
+    <div (click)="closed.emit()" class="dropdown-content">
+      <ng-content></ng-content>
+    </div>
+  </ng-template> -->
+
+<!-- custom dropdown sử dụng cdk, k dùng ngModel <div class="dropdown-container">
+  <button cdkOverlayOrigin (click)="toggleDropdown()" #trigger="cdkOverlayOrigin" mat-stroked-button>{{label}}</button>
+  <ng-template cdk-connected-overlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isDropdownOpen"
+    (backdropClick)="closeDropdown()">
+    <div class="dropdown-panel">
+      <div *ngFor="let item of items" class="dropdown-item  gap-2 items-center flex" (click)="selectItem(item)">
+        @if(optionImage){
+        <img src="{{getOptionImg(item)}}" class="shadow-outline-white avatar-container avatar">
+        }
+        {{ getOptionLabel(item)}}
+     
+      </div>
+    </div>
+  </ng-template>
+</div> -->
+
+<div class="custom-select">
+  <mat-form-field appearance="outline">
+    <mat-select #instance [formControl]="formControl" [disabled]="disabled" [value]="value" (selectionChange)="selectItem($event)">
+      @for (item of items; track item) {
+      <mat-option [value]="item[optionValue]" >
+        <div class="gap-2 items-center flex">
+          <img *ngIf="optionImage" src="{{getOptionImg(item)}}"
+            class="shadow-outline-white  avatar">{{item[optionLabel]}}
+        </div>
+      </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
