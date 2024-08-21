@@ -1,0 +1,8 @@
+<div class="mt-6 relative">
+    Priority
+  </div>
+  <div [formGroup]="formData">
+    <j-dropdown #e [items]="priorities" (selectedItemChange)="onSelectedPriorityChange($event)" optionLabel="name"
+      [optionValue]="'name'" [optionImage]="'avatarUrl'" formControlName="priority" [disabled]="true">
+    </j-dropdown>
+  </div>

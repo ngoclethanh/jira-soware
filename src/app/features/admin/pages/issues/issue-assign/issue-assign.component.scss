@@ -1,0 +1,24 @@
+.dropdown-panel {
+    //border: 1px solid #ccc;
+    background: white;
+    //position: absolute;
+    min-width: 150px;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    z-index: 10;
+    background-color: #FFFFFF;
+    transition-property: all;
+    transition-duration: 1s;
+    box-shadow: 0 3px 6px -4px #0000001f,
+    0 6px 16px #00000014,
+    0 9px 28px 8px #0000000d;
+}
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+.avatar{
+    width: 20px;
+    height: 20px;
+}

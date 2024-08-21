@@ -43,8 +43,6 @@ export class IssueCardComponent implements OnInit,OnChanges {
     this.priorityIcon = IssueUtil.getIssuePriorityIcon(this.issue?.priority!)
   }
   openDialog(data:any): void {
-    console.log(data);
-    
     const dialogRef = this.dialog.open(IssueDetailComponent, {
       data: data,
       width:"1000px",
@@ -52,9 +50,8 @@ export class IssueCardComponent implements OnInit,OnChanges {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
-      }
+      this.issueTypeIcon = IssueUtil.getIssueTypeIcon(this.issue?.type!)
+      this.priorityIcon = IssueUtil.getIssuePriorityIcon(this.issue?.priority!)
     });
   }
 }

@@ -1,0 +1,39 @@
+<div class="uppercase text-sm font-bold">Assignees</div>
+
+<div class="grid grid-cols-2 gap-4" [formGroup]="formData">
+
+    <ng-container formArrayName="userIds" *ngFor="let fruit of userItem.controls;let i=index" style="flex:1 1 50%">
+        <mat-chip-row [editable]="false" (removed)="remove(i)">
+            {{ getUserName(fruit.value)}}
+            <button matChipRemove [attr.aria-label]="'remove ' + fruit.value">
+                <mat-icon>cancel</mat-icon>
+            </button>
+        </mat-chip-row>
+    </ng-container>
+
+
+</div>
+<div class="relative">
+    <a #trigger1="cdkOverlayOrigin" class="flex items-center my-2 cursor-pointer text-blue-600" style="color: #0052cc;"
+        (click)="isDropdownOpen = true" cdkOverlayOrigin><i><svg viewBox="64 64 896 896" focusable="false"
+                fill="currentColor" width="1em" height="1em" data-icon="plus" aria-hidden="true">
+                <defs>
+                    <style></style>
+                </defs>
+                <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
+                <path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path>
+            </svg></i> Add Assignee</a>
+    <ng-template cdkConnectedOverlay cdk-connected-overlay [cdkConnectedOverlayOrigin]="trigger1"
+        [cdkConnectedOverlayOpen]="isDropdownOpen" (backdropClick)="isDropdownOpen = false"
+        (overlayOutsideClick)="isDropdownOpen = false">
+        <ul class="dropdown-panel">
+            @for ( item of reporterList;track $index ) {
+            <li class="dropdown-item  gap-2 items-center flex" (click)="addApi(item.id)" *ngIf="!isUserSelected(item)">
+                <img src="{{item.avatarUrl}}" class="shadow-outline-white avatar-container avatar">
+                <div>{{item.name}}</div>
+            </li>
+            }
+
+        </ul>
+    </ng-template>
+</div>

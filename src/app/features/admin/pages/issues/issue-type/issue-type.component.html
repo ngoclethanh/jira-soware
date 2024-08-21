@@ -1,0 +1,23 @@
+<div class="dropdown-container">
+    <button cdkOverlayOrigin (click)="toggleDropdown()" #trigger="cdkOverlayOrigin" class="btn-type" mat-stroked-button>
+        <div class="flex gap-2" style="cursor: pointer;">
+            <img src="{{getIssueTypeIcon}}" width="16" height="16" alt="">
+            <div>{{data.type?.toUpperCase()}}-{{data.id}}</div>
+        </div>
+    </button>
+    <ng-template cdk-connected-overlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isDropdownOpen"
+        (backdropClick)="closeDropdown()">
+        <ul class="dropdown-panel">
+            @for (item of issueType; track $index) {
+                @if(data.type !== item.value){
+
+                <li class="dropdown-item  gap-2 items-center flex" (click)="selectItem(item)">
+                    <img src="{{item.icon}}" class="shadow-outline-white avatar-container avatar">
+                    <div>{{item.value.toUpperCase()}}</div>
+                </li>
+                }
+            }
+
+        </ul>
+    </ng-template>
+</div>

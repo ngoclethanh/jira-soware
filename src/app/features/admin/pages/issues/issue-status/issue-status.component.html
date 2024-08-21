@@ -1,0 +1,6 @@
+<div [formGroup]="formData">
+    <div class="uppercase text-sm font-bold">status</div>
+    <j-dropdown #dropdown [items]="issueStatuses" formControlName="status"
+      (selectedItemChange)="onSelectedStatusChange($event)" optionLabel="label" [optionValue]="'value'">
+    </j-dropdown>
+  </div>

@@ -1,0 +1,8 @@
+<div class="mt-5">
+    <div class="uppercase text-sm font-bold">reporter</div>
+    <div [formGroup]="formData">
+      <j-dropdown #e [items]="reporterList" (selectedItemChange)="onSelectedReportChange($event)" optionLabel="name"
+        [optionValue]="'id'" [optionImage]="'avatarUrl'" formControlName="reporterId" [disabled]="true">
+      </j-dropdown>
+    </div>
+  </div>
