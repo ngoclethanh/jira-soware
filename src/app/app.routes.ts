@@ -27,4 +27,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/admin/auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
+  {
+    path: 'load',
+
+    loadComponent: () => import('../app/shared/components/loading/loading.component').then((x)=> x.LoadingComponent),
+   
+  },
 ];

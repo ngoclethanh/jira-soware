@@ -4,11 +4,14 @@
     </mat-sidenav>
 </mat-sidenav-container>
 <div class="w-full overflow-y-auto">
-    <mat-toolbar >
+    <mat-toolbar>
         <app-breadcrumb></app-breadcrumb>
     </mat-toolbar>
     <app-header></app-header>
     <div class="p-4">
+        @if(loading()){
+        <app-loading></app-loading>
+        }
         <router-outlet></router-outlet>
     </div>
 </div>

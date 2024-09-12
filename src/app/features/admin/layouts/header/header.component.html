@@ -1,5 +1,5 @@
 <div class="flex px-4 gap-4 justify-between">
-    <div class="text-2xl font-medium">{{title.label}}</div>
+    <div class="text-2xl font-medium">{{title?.label}}</div>
     <div class="gap-4 flex">
         <ng-container *ngFor="let item of socialLink">
             <button mat-stroked-button>{{item.name}}</button>

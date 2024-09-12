@@ -2,29 +2,33 @@
 <!-- <input type="text" (keyup.enter)="onInput()" [(ngModel)]="text" name="text">
 <app-student></app-student> -->
 
-<app-toggle >
+<app-toggle>
     <header header>
         <div>
-           text content 
+            text content
         </div>
     </header>
     <div div></div>
     <span class="text-lg" style="color: brown;">Question 1</span>
-  </app-toggle>
-  
-  <app-toggle>
+</app-toggle>
+
+<app-toggle>
     <footer footer>
         <span>Question 2</span>
 
     </footer>
-  </app-toggle>
+</app-toggle>
+<button (click)="showSuccessToast()" style="border: 1px solid aqua;padding: 5px 0;">show toast</button>
+<button (click)="showErrorToast()"  style="border:  1px solid red;padding: 5px 0;">show error toast</button>
+<button (click)="showInfoToast()"  style="border:  1px solid blue;padding: 5px 0;">show error toast</button>
+<!-- <app-toast></app-toast> -->
 
 
 <!-- <ng-container [ngComponentOutlet]="studentCpn"></ng-container> -->
 <!-- có thể dùng when giống if -->
 @defer (on interaction(trigger)) {
-    <app-student></app-student>
+<app-student></app-student>
 }
 @placeholder(minimum 500ms) {
-    <button type="button" #trigger > click </button>
+<button type="button" #trigger> click </button>
 }

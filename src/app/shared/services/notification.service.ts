@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class NotificationService {
   subject$ = new Subject();
-  behavior$= new BehaviorSubject<string>("");
+  behavior$= new BehaviorSubject<any>('');
   user$ = new BehaviorSubject<any>([]);
 
   constructor() {}

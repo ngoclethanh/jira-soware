@@ -11,19 +11,27 @@ import { FormsModule } from '@angular/forms';
 import { NgComponentOutlet } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ToggleComponent } from '../toggle/toggle.component';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [StudentComponent, FormsModule,NgComponentOutlet,RouterOutlet,ToggleComponent],
+  imports: [
+    StudentComponent,
+    FormsModule,
+    NgComponentOutlet,
+    RouterOutlet,
+    ToggleComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   service = inject(NotificationService);
+  toastService = inject(ToastService);
   text: string = '';
-studentCpn:Type<any>|null=null;
+  studentCpn: Type<any> | null = null;
   onInput() {
     //this.service.send(this.text);
     this.service.send(1);
@@ -33,7 +41,7 @@ studentCpn:Type<any>|null=null;
     this.service.send(4);
     this.service
       .received()
-      .subscribe((data:any) => console.log('behavior:' + data));
+      .subscribe((data: any) => console.log('behavior:' + data));
     // this.service
     //   .received()
     //   .subject.subscribe((data) => console.log('subject:' + data));
@@ -44,7 +52,7 @@ studentCpn:Type<any>|null=null;
     this.findSecondLargest();
     console.log('kết quả cuối cùng:', this.findSecondLargest());
   }
-  
+
   findSecondLargest() {
     // Phương pháp 1: Sắp xếp mảng
     // Sắp xếp mảng theo thứ tự giảm dần.
@@ -66,7 +74,7 @@ studentCpn:Type<any>|null=null;
       if (number > first) {
         second = first;
         first = number;
-      } 
+      }
       //Nếu phần tử hiện tại không lớn hơn first nhưng lớn hơn second và không bằng first, cập nhật second bằng giá trị của phần tử hiện tại.
       else if (number > second && number !== first) {
         second = number;
@@ -75,11 +83,21 @@ studentCpn:Type<any>|null=null;
 
     return second === -Infinity ? null : second;
   }
-//vd về lazyloading
-  loadStudent(){
-     import("../student/student.component").then((m)=> {
-      this.studentCpn = m.StudentComponent
-     });
+  //vd về lazyloading
+  loadStudent() {
+    import('../student/student.component').then((m) => {
+      this.studentCpn = m.StudentComponent;
+    });
   }
   // Ví dụ sử dụng:
+
+  showSuccessToast() {
+    this.toastService.success({message:'Success message! have a nice day'});
+  }
+  showErrorToast() {
+    this.toastService.error(  {message:'Error message! have a nice day'});
+  }
+  showInfoToast() {
+    this.toastService.info( {message:'Info message! have a nice day'});
+  }
 }
