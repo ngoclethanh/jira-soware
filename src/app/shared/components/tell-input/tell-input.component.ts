@@ -48,7 +48,7 @@ import { MyTel } from '../../models/model';
 //ControlValueAccessor là một interface đóng vai trò là cầu nối giữa Form API của angular với các native element trên DOM.
 // Nó định nghĩa các phương thức để ghi giá trị và lắng nghe những thay đổi trên dữ liệu của các input element.
 export class TellInputComponent
-  implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy
+  implements ControlValueAccessor,  OnDestroy
 {
   jsonpipe=inject(JsonPipe);
   static nextId = 0;
@@ -66,7 +66,6 @@ export class TellInputComponent
   readonly stateChanges = new Subject<void>();
   readonly touched = signal(false);
   readonly controlType = 'example-tel-input';
-  readonly id = `example-tel-input-${TellInputComponent.nextId++}`;
   readonly _userAriaDescribedBy = input<string>('', {
     alias: 'aria-describedby',
   });
@@ -238,7 +237,7 @@ export class TellInputComponent
   }
 
   _handleInput(control: AbstractControl, nextElement?: HTMLInputElement): void {
-    this.autoFocusNext(control, nextElement);
+    //this.autoFocusNext(control, nextElement);
     this.onChange(this.value);
   }
   ngOnDestroy(): void {}

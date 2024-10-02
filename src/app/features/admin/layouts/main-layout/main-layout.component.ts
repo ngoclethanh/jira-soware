@@ -18,6 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProjectService } from '../../../../shared/services/project.service';
 import { LoadingComponent } from '../../../../shared/components/loading/loading.component';
 import { LoadingService } from '../../../../shared/services/loading.service';
+import { TranslateService } from '@ngx-translate/core';
+import { last } from 'rxjs';
 @Component({
   selector: 'app-main-layout',
   standalone: true,
@@ -44,7 +46,8 @@ export class MainLayoutComponent implements OnDestroy, AfterContentChecked {
   });
   constructor(
     private projectService: ProjectService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    public translate:TranslateService
   ) {
     this.projectService.getProject();
   }
@@ -56,5 +59,9 @@ export class MainLayoutComponent implements OnDestroy, AfterContentChecked {
     this.loadingService.showLoading.subscribe((data:boolean) => {
       this.loading.set(data);
     });
+  }
+  swithLanguage(){
+    this.translate.use(this.translate.currentLang === 'vi' ? 'en' : 'vi');
+    localStorage.setItem('lang', this.translate.currentLang);
   }
 }

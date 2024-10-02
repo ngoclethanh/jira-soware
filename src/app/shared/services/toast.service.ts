@@ -4,13 +4,14 @@ import {
   RendererFactory2,
   ViewChild,
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { timeout } from 'rxjs';
 export interface ToastConfigs {
   translate?: boolean;
   showIcon?: boolean;
   message: string;
   title?: string;
   position?: ToastPosition;
-  duration?:number ;
 }
 export type ToastPosition =
   | 'top-left'
@@ -23,7 +24,7 @@ export type ToastPosition =
   providedIn: 'root',
 })
 export class ToastService {
-  constructor(rendererFactory: RendererFactory2) {
+  constructor(rendererFactory: RendererFactory2,private translate:TranslateService) {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
   private renderer: Renderer2;
@@ -45,35 +46,37 @@ export class ToastService {
   // }
   success(toastConfig: ToastConfigs) {
     const toastElement = document.getElementById('toast')!;
-    this.positionToast(toastConfig.position!,toastElement)
-    const toast = this.createToastElement(toastConfig.message, 'success');
+    this.positionToast(toastConfig.position!, toastElement);
+    const toast = this.createToastElement(this.translate.instant(toastConfig.message), {
+      closeButton: true,
+      toastClass: 'success',
+      timeOut:5000
+    });
     toastElement?.appendChild(toast);
-    setTimeout(() => {
-      this.renderer.removeChild(toastElement, toast);
-    }, toastConfig.duration || 3000);
   }
   error(toastConfig: ToastConfigs) {
     const toastElement = document.getElementById('toast')!;
-    this.positionToast(toastConfig.position!,toastElement)
-    const toast = this.createToastElement(toastConfig.message, 'error');
+    this.positionToast(toastConfig.position!, toastElement);
+    const toast = this.createToastElement(this.translate.instant(toastConfig.message), {
+      closeButton: true,
+      toastClass: 'error',
+      timeOut:5000
+    });
     toastElement?.appendChild(toast);
-    setTimeout(() => {
-      this.renderer.removeChild(toastElement, toast);
-    }, toastConfig.duration || 3000);
   }
   info(toastConfig: ToastConfigs) {
     const toastElement = document.getElementById('toast')!;
-    this.positionToast(toastConfig.position!,toastElement)
-    const toast = this.createToastElement(toastConfig.message, 'info');
+    this.positionToast(toastConfig.position!, toastElement);
+    const toast = this.createToastElement(this.translate.instant(toastConfig.message), {
+      closeButton: true,
+      toastClass: 'info',
+      timeOut:5000
+    });
     toastElement?.appendChild(toast);
-    setTimeout(() => {
-      this.renderer.removeChild(toastElement, toast);
-    }, toastConfig.duration || 3000);
   }
-  private createToastElement(
-    message: string,
-    type: 'success' | 'error' | 'info' | 'warning'
-  ): HTMLElement {
+
+  //type: 'success' | 'error' | 'info' | 'warning',
+  private createToastElement(message: string, options: any): HTMLElement {
     // const text = this.renderer.createText(message);
 
     // // Thêm class tùy vào loại thông báo
@@ -105,51 +108,66 @@ export class ToastService {
 
     const toastElementChild = this.renderer.createElement('div');
     toastElementChild.setAttribute('class', 'toast');
-    toastElementChild.style.cssText = `border-color:${color[type]}`;
+    toastElementChild.style.cssText = `border-color:${
+      color[options.toastClass]
+    }`;
     toastElementChild.innerHTML = `
           <div class="toast__icon">
-              <i class="fa ${icon[type]}" style="color:${color[type]}"></i>
+              <i class="fa ${icon[options.toastClass]}" style="color:${
+      color[options.toastClass]
+    }"></i>
           </div>
           <div class="toast__body">
-              <div class="toast__title">${type}</div>
+              <div class="toast__title">${options.toastClass}</div>
               <div class="toast__msg">${message}</div>
           </div>
-          <div class="toast__close">
+          <div id="toast__close" class="toast__close">
               <i class="fa fa-times"></i>
           </div>
       `;
+    if (!options.closeButton) {
+      const toast__close = toastElementChild.querySelector('.toast__close');
+      toast__close.remove();
+    }
     toastElementChild.onclick = (e: any) => {
       if (e.target.closest('.toast__close')) {
         this.renderer.removeChild(document.body, toastElementChild);
       }
     };
+     setTimeout(() => {
+      //xóa element khỏi dom
+      toastElementChild.remove();
+    },options.timeOut || 5000);
+    console.log(options);
+    
     return toastElementChild;
   }
 
-  positionToast(position:string, element:any){
+  positionToast(position: string, element: any) {
     switch (position) {
       case 'top-left':
-        element.style.cssText  = ' left: 12px;top: 12px;';
+        element.style.cssText = ' left: 12px;top: 12px;';
         break;
       case 'bottom-center':
-        element.style.cssText  =
+        element.style.cssText =
           ' left: 50%;bottom: 12px;transform:translateX(-50%)';
         break;
       case 'top-center':
-        element.style.cssText  = 'left: 50%;top: 12px;transform:translateX(-50%)';
+        element.style.cssText =
+          'left: 50%;top: 12px;transform:translateX(-50%)';
         break;
       case 'bottom-left':
-        element.style.cssText  = ' left: 12px;bottom: 12px;';
+        element.style.cssText = ' left: 12px;bottom: 12px;';
         break;
       case 'bottom-right':
-        element.style.cssText  = ' right: 12px;bottom: 12px;';
+        element.style.cssText = ' right: 12px;bottom: 12px;';
         break;
       case 'top-right':
-        element.style.cssText  = ' right: 12px;top: 12px;';
+        element.style.cssText = ' right: 12px;top: 12px;';
         break;
       default:
         //top-right
-        element.style.cssText  = ' right: 12px;top: 12px;';
+        element.style.cssText = ' right: 12px;top: 12px;';
         break;
     }
   }

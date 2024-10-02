@@ -1,0 +1,19 @@
+<mat-form-field [appearance]="'outline'">
+    @if(showLabel()){
+        <mat-label>{{label}} </mat-label>
+    }
+    <input type="text" matInput  [(ngModel)]="value"   (blur)="trimData();" [disabled]="disabled" (input)="onInput($event)" class="ng-invalid">
+    <!-- @if (absControl.hasError('required')) {
+        <mat-error>Required</mat-error>
+      }
+    @if (absControl.hasError('minlength')) {
+    <mat-error>độ dài tối thiểu {{absControl.errors?.['minlength']?.['requiredLength']}}</mat-error>
+    } -->
+
+   @if(showRightIcon){
+    <mat-icon matSuffix>{{icon}}</mat-icon>
+   }
+   @if(showLeftIcon){
+    <mat-icon matPrefix>{{icon}}</mat-icon>
+   }
+</mat-form-field>

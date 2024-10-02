@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { CartService } from '../product/product.service';
 import { CommonModule } from '@angular/common';
 
@@ -10,14 +15,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './checkout.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class CheckoutComponent implements OnInit {
-  items:any=[];
-
+export class CheckoutComponent implements OnInit, OnDestroy {
+  items: any = [];
+  ngOnDestroy(): void {
+    console.log('has been removed');
+  }
   constructor(private service: CartService) {
     //this.service= new CartService();
   }
   ngOnInit(): void {
     this.items = this.service.getItems();
-    
   }
 }

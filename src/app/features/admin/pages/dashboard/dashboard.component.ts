@@ -1,17 +1,26 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  OnChanges,
+  OnDestroy,
   OnInit,
+  SimpleChanges,
   Type,
+  ViewChild,
   inject,
 } from '@angular/core';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { StudentComponent } from '../student/student.component';
 import { FormsModule } from '@angular/forms';
-import { NgComponentOutlet } from '@angular/common';
+import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ToggleComponent } from '../toggle/toggle.component';
 import { ToastService } from '../../../../shared/services/toast.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { CheckoutComponent } from '../checkout/checkout.component';
+import { BoardComponent } from '../board/board.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,15 +31,25 @@ import { ToastService } from '../../../../shared/services/toast.service';
     NgComponentOutlet,
     RouterOutlet,
     ToggleComponent,
+    TranslateModule,
+    CommonModule,
+    CheckoutComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,OnChanges,OnDestroy,AfterViewInit{
+  template:string ='123';
+  @ViewChild('btnButton') btnButton! :ElementRef;
+  constructor(){
+    console.log("constructor:",this.template);
+    
+  }
   service = inject(NotificationService);
   toastService = inject(ToastService);
   text: string = '';
+  active:boolean = true;
   studentCpn: Type<any> | null = null;
   onInput() {
     //this.service.send(this.text);
@@ -46,13 +65,37 @@ export class DashboardComponent implements OnInit {
     //   .received()
     //   .subject.subscribe((data) => console.log('subject:' + data));
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    
+    console.log("onChange:",this.template);
+  }
+  ngAfterViewInit(): void {
+    console.log("afterviewinit:",this.template);
+    //this.btnButton.nativeElement.innerHTML='ngoc sieu dz'
+  }
   ngOnInit(): void {
+    console.log("onInit:",this.template);
     //this.service.received().behavior.subscribe((data) => console.log("behavior:"+data));
     /// this.service.received().subject.subscribe((data) => console.log("subject:"+data));
     this.findSecondLargest();
     console.log('kết quả cuối cùng:', this.findSecondLargest());
+    const items: any = [
+      { id: 1, parentId: null, name: 'Item 1' },
+      { id: 2, parentId: 1, name: 'Item 2' },
+      { id: 3, parentId: 1, name: 'Item 3' },
+      { id: 4, parentId: 2, name: 'Item 4' },
+      { id: 5, parentId: 3, name: 'Item 5' },
+      { id: 6, parentId: 3, name: 'Item 6' },
+    ];
+   
+   //const listNode= JSON.parse(JSON.stringify(items));
+     const arrMerge= this.mapTree(items,items );
+    console.log(arrMerge);
   }
-
+ngOnDestroy(): void {
+  
+}
   findSecondLargest() {
     // Phương pháp 1: Sắp xếp mảng
     // Sắp xếp mảng theo thứ tự giảm dần.
@@ -92,12 +135,29 @@ export class DashboardComponent implements OnInit {
   // Ví dụ sử dụng:
 
   showSuccessToast() {
-    this.toastService.success({message:'Success message! have a nice day'});
+    this.toastService.success({ message: 'MESSAGE.SUCCESS' });
   }
   showErrorToast() {
-    this.toastService.error(  {message:'Error message! have a nice day'});
+    this.toastService.error({ message: 'Error message! have a nice day' });
   }
   showInfoToast() {
-    this.toastService.info( {message:'Info message! have a nice day'});
+    this.toastService.info({ message: 'Info message! have a nice day' });
+  }
+
+  mapTree( listNode: any[],items: any[]) {
+    const res= listNode.map((x) => {
+        const listChildren = items.filter((s) => s.parentId === x.id);
+        if (listChildren.length > 0) {
+          x.children = listChildren;
+          this.mapTree(listChildren,listNode );
+        }
+        return x;
+    }).filter((f)=>f.parentId == null);
+
+    return res;
+    //diễn giải đoạn code dequy:
+    //hàm mapTree nhận 2 giá trị : giá trị 1 là hàm sẽ được lặp để tìm con.hàm thứ 2 là hàm gốc không sửa đổi mục đích tìm children.
+    //nếu khi tìm xong nếu có thể tìm con tiếp thì sẽ gọi lại hàm maptre lúc này giá trị thứ 1(là 1 tree đã tìm được từ lần lặp trước) sẽ tiếp tục lặp để tìm tree bé hơn
+
   }
 }

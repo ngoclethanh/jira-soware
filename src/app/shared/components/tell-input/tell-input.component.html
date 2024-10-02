@@ -3,12 +3,8 @@
     aria-label="Area code" (input)="_handleInput(parts.controls.area, exchange)" #area />
   <span class="example-tel-input-spacer">&ndash;</span>
   <input matInput class="example-tel-input-element" formControlName="exchange" maxLength="3" size="3"
-    aria-label="Exchange code" (input)="_handleInput(parts.controls.exchange, subscriber)"
-    (keyup.backspace)="autoFocusPrev(parts.controls.exchange, area)" #exchange />
+    aria-label="Exchange code" (input)="_handleInput(parts.controls.exchange, subscriber)" #exchange />
   <span class="example-tel-input-spacer">&ndash;</span>
   <input matInput class="example-tel-input-element" formControlName="subscriber" maxLength="4" size="4"
-    aria-label="Subscriber number" (input)="_handleInput(parts.controls.subscriber)"
-    (keyup.backspace)="autoFocusPrev(parts.controls.subscriber, exchange)" #subscriber />
-
-
+    aria-label="Subscriber number" (input)="_handleInput(parts.controls.subscriber)" #subscriber />
 </div>

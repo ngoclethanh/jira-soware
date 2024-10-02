@@ -1,0 +1,64 @@
+<div
+  class="flex gap-4"
+  [formGroup]="form"
+>
+  <mat-form-field
+    [appearance]="'outline'"
+    class="w-24"
+  >
+    <input
+      matInput
+      type="text"
+      formControlName="day"
+      placeholder="dd"
+      (input)="_handleInput()"
+    />
+    @if (this.form.get('day')?.hasError('required')) {
+      <mat-error>Required</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field
+    [appearance]="'outline'"
+    class="w-24"
+  >
+    <input
+      matInput
+      formControlName="hour"
+      placeholder="hh"
+      (input)="_handleInput()"
+    />
+    <!-- @if (this.form.get('hour')?.hasError('invalidDay')) {
+      <mat-error>Invalid</mat-error>
+    }
+    @if (this.form.get('hour')?.hasError('required')) {
+      <mat-error>required</mat-error>
+    }
+    @if (this.form.get('hour')?.hasError('maxlength')) {
+      <mat-error>maxlength</mat-error>
+    } -->
+      <mat-error>{{getError(form.controls['hour'])}} </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    [appearance]="'outline'"
+    class="w-24"
+  >
+    <input
+      matInput
+      formControlName="minute"
+      placeholder="mm"
+      (input)="_handleInput()"
+    />
+  </mat-form-field>
+  <mat-form-field
+    [appearance]="'outline'"
+    class="w-24"
+  >
+    <input
+      matInput
+      formControlName="second"
+      placeholder="ss"
+      (input)="_handleInput()"
+    />
+  </mat-form-field>
+</div>

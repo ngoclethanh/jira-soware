@@ -4,8 +4,11 @@
     </mat-sidenav>
 </mat-sidenav-container>
 <div class="w-full overflow-y-auto">
-    <mat-toolbar>
+    <mat-toolbar class="flex justify-between">
         <app-breadcrumb></app-breadcrumb>
+        <div>
+            <img (click)="swithLanguage()" src="../../../../../assets/images/flags/icon-{{translate.currentLang}}.png" style="width: 30px;height: auto;cursor: pointer;" alt="">
+        </div>
     </mat-toolbar>
     <app-header></app-header>
     <div class="p-4">

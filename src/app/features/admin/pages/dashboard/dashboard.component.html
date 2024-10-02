@@ -15,10 +15,9 @@
 <app-toggle>
     <footer footer>
         <span>Question 2</span>
-
     </footer>
 </app-toggle>
-<button (click)="showSuccessToast()" style="border: 1px solid aqua;padding: 5px 0;">show toast</button>
+<button (click)="showSuccessToast()" style="border: 1px solid aqua;padding: 5px 0;">show {{'MESSAGE.SUCCESS'|translate}}</button>
 <button (click)="showErrorToast()"  style="border:  1px solid red;padding: 5px 0;">show error toast</button>
 <button (click)="showInfoToast()"  style="border:  1px solid blue;padding: 5px 0;">show error toast</button>
 <!-- <app-toast></app-toast> -->
@@ -31,4 +30,12 @@
 }
 @placeholder(minimum 500ms) {
 <button type="button" #trigger> click </button>
+}
+
+<button (click)="active=!active" #btnButton>remove checkout</button>
+@if(active){
+<app-checkout></app-checkout>
+}
+@else {
+    <p>đã ẩn app checkout</p>
 }

@@ -1,23 +1,31 @@
 <p>project-setting works!</p>
-<div></div>
+<!-- <div></div>
 <div class="test-animation">
 
-</div>
+</div> -->
 <div [formGroup]="form">
-  <mat-form-field appearance="outline">
+  <!-- <mat-form-field appearance="outline">
     <mat-label>Phone number</mat-label>
     <tell-input formControlName="tel"></tell-input>
 
     <mat-icon matSuffix>phone</mat-icon>
     <mat-hint>Include area code</mat-hint>
-  </mat-form-field>
+  </mat-form-field> -->
+  <day-input formControlName="day"></day-input>
+  <app-input-text  formControlName="address" [uppercase]="false" [placeholder]="'vui lòng nhập vào trường này'" 
+  [showRightIcon]="true" icon="search" [disabled]="false"label="title"></app-input-text>
+  
 
-  <p>Entered value: {{form.valueChanges | async | json}}</p>
+  <p>Entered value: {{form.value.address}},</p>
+  <p>Form Control Touched: {{ form.get('address')?.touched }}</p>
 </div>
-<button (click)="click()">click form</button>
+
+
+<button (click)="click()" mat-stroked-button>click form</button>
+<button (click)="setControl()" mat-stroked-button>set control</button>
 <div class="box">
   <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
-  <mat-card>
+  <!-- <mat-card>
     <mat-card-content>
       <h2>Number of People</h2>
       <p>Room: {{ Roomvalue }}, Adult: {{ Adult }}, Children: {{ Children }}</p>
@@ -42,5 +50,5 @@
         </div>
       </div>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 </div>
